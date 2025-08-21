@@ -1,0 +1,90 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;   /* ocupa toda la pantalla */
+    width: 100vw;    /* ocupa toda la pantalla */
+    background: #19191a;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1000px;       /* ancho fijo */
+    height: 500px;      /* alto fijo (cuadrado) */
+    margin: 0 auto;     /* centrar horizontalmente */
+    margin-top: 10vh;   /* un poco de espacio desde arriba */
+    padding: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* espacio entre los elementos */
+    background-color: #000000;   /* color de fondo */
+    border-radius: 12px;      /* esquinas redondeadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* sombra suave */
+    box-sizing: border-box;  /* incluye padding y border en el tamaño total */
+}
+
+.Tasks {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #19191a;
+    border-radius: 10px;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.text {
+    margin: 0%;
+    padding: 0%;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.addTask{
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    color: rgb(0, 0, 0);
+    background-color: #79bbd4;
+    cursor: pointer;
+}
+
+.Logout{
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    color: rgb(255, 255, 255);
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.Logout:hover {
+    background-color: #19191a;
+    border: 1px solid #2686bd;
+}
+
+.addTask:hover {
+    border: 1px solid #2686bd;
+}

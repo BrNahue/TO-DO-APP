@@ -1,0 +1,98 @@
+# To-do App Backend
+
+Backend para una aplicación de tareas (To-do) construido con Node.js, Express, TypeORM y PostgreSQL.
+
+## Características
+
+- Registro y login de usuarios
+- Gestión de tareas por usuario
+- Estructura modular (controllers, services, routes, entities)
+- Uso de variables de entorno
+- Conexión a PostgreSQL con TypeORM
+
+## Requisitos
+
+- Node.js >= 18
+- PostgreSQL >= 13
+
+## Instalación
+
+1. **Clona el repositorio:**
+
+   ```sh
+   git clone https://github.com/tu-usuario/to-do-app.git
+   cd to-do-app/back
+   ```
+
+2. **Instala las dependencias:**
+
+   ```sh
+   npm install
+   ```
+
+3. **Configura las variables de entorno:**
+
+   Crea un archivo `.env` en la carpeta `back` con el siguiente contenido:
+
+   ```
+   DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/todo_app
+   PORT=3000
+   ```
+
+   Cambia `usuario` y `contraseña` por los de tu base de datos.
+
+4. **Crea la base de datos en PostgreSQL:**
+
+   ```sql
+   CREATE DATABASE todo_app;
+   ```
+
+5. **Inicia el servidor:**
+
+   ```sh
+   npm run dev
+   ```
+
+   El backend estará disponible en `http://localhost:3000`.
+
+## Scripts útiles
+
+- `npm run dev` — Inicia el servidor en modo desarrollo con nodemon.
+- `npm run build` — Compila el código TypeScript.
+- `npm start` — Inicia el servidor en producción.
+
+## Estructura del proyecto
+
+```
+back/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── dto/
+│   ├── entities/
+│   ├── routes/
+│   ├── services/
+│   ├── index.ts
+│   └── server.ts
+├── .env
+├── package.json
+└── tsconfig.json
+```
+
+## Endpoints principales
+
+- `POST /users/register` — Registrar usuario
+- `POST /users/login` — Login de usuario
+- `GET /users` — Listar usuarios
+
+*(Agrega aquí los endpoints de tareas cuando estén listos)*
+
+## Notas
+
+- Usa `synchronize: true` solo en desarrollo. Para producción, usa migraciones.
+- Recuerda hashear las contraseñas antes de guardarlas.
+
+---
+
+¡Listo para empezar!  

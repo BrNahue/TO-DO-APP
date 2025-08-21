@@ -1,0 +1,48 @@
+.taskContainer {
+  width: 90%;
+  height: 12%;               /* que ocupe toda la fila */
+  display: flex;
+  justify-content: space-between; /* texto a la izquierda, botón a la derecha */
+  align-items: center;       /* alinear verticalmente */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #000000;
+  box-sizing: border-box;
+}
+
+.taskContent {
+  width: 80%;
+  display: flex;
+  flex-direction: row; 
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.taskTitle {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.taskDescription {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.taskButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.taskButton:hover {
+  border: 1px solid #2686bd;
+}

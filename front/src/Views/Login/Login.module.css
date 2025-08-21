@@ -1,0 +1,121 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;   /* ocupa toda la pantalla */
+    width: 100vw;    /* ocupa toda la pantalla */
+    background: #19191a;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1000px;       /* ancho fijo */
+    height: 500px;      /* alto fijo (cuadrado) */
+    margin: 0 auto;     /* centrar horizontalmente */
+    margin-top: 10vh;   /* un poco de espacio desde arriba */
+    padding: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* espacio entre los elementos */
+    background-color: #000000;   /* color de fondo */
+    border-radius: 12px;      /* esquinas redondeadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* sombra suave */
+    box-sizing: border-box;  /* incluye padding y border en el tamaño total */
+}
+
+.text{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    gap: 20px;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 350px;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: transparent;
+}
+
+.input:focus {
+  border-color: #2686bd;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  background: black;
+  padding: 0 4px;
+}
+
+/* Efecto al enfocar o cuando el input tiene valor */
+.input:focus + .floatingLabel,
+.input:not(:placeholder-shown) + .floatingLabel {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #2686bd;
+  font-weight: 500;
+}  
+
+.buttons{
+    display: flex;
+    gap: 20px;
+}
+
+.login{
+    border-radius: 25px;
+    color: black;
+    background-color: #79bbd4;
+}
+
+.register{
+    border-radius: 25px;
+    color: white;
+    background-color: #000000;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+
+  .register:hover {
+    color: white;
+    border-color: #646cff;
+  }
+
+.Logo {
+    width: 300px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-bottom: 20px; /* Espacio entre la imagen y el texto */
+}
