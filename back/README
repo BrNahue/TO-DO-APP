@@ -1,19 +1,25 @@
 # To-do App Backend
 
-Backend para una aplicación de tareas (To-do) construido con Node.js, Express, TypeORM y PostgreSQL.
+Backend para una aplicación de tareas (To-do) desarrollado con Node.js, Express, TypeORM y PostgreSQL.
+
+---
 
 ## Características
 
-- Registro y login de usuarios
-- Gestión de tareas por usuario
-- Estructura modular (controllers, services, routes, entities)
-- Uso de variables de entorno
-- Conexión a PostgreSQL con TypeORM
+- Registro y login de usuarios con autenticación JWT
+- CRUD de tareas asociadas a cada usuario
+- Validación de datos con DTOs y middlewares
+- Estructura modular y escalable
+- Uso de variables de entorno para configuración segura
+
+---
 
 ## Requisitos
 
 - Node.js >= 18
 - PostgreSQL >= 13
+
+---
 
 ## Instalación
 
@@ -37,6 +43,7 @@ Backend para una aplicación de tareas (To-do) construido con Node.js, Express, 
    ```
    DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/todo_app
    PORT=3000
+   JWT_SECRET=tu_clave_secreta_jwt
    ```
 
    Cambia `usuario` y `contraseña` por los de tu base de datos.
@@ -55,11 +62,7 @@ Backend para una aplicación de tareas (To-do) construido con Node.js, Express, 
 
    El backend estará disponible en `http://localhost:3000`.
 
-## Scripts útiles
-
-- `npm run dev` — Inicia el servidor en modo desarrollo con nodemon.
-- `npm run build` — Compila el código TypeScript.
-- `npm start` — Inicia el servidor en producción.
+---
 
 ## Estructura del proyecto
 
@@ -71,6 +74,7 @@ back/
 │   ├── controllers/
 │   ├── dto/
 │   ├── entities/
+│   ├── middlewares/
 │   ├── routes/
 │   ├── services/
 │   ├── index.ts
@@ -80,19 +84,136 @@ back/
 └── tsconfig.json
 ```
 
-## Endpoints principales
+---
 
-- `POST /users/register` — Registrar usuario
-- `POST /users/login` — Login de usuario
-- `GET /users` — Listar usuarios
+## Rutas de la API
 
-*(Agrega aquí los endpoints de tareas cuando estén listos)*
+### Usuarios
 
-## Notas
+- **POST `/users/register`**  
+  Registra un nuevo usuario.  
+  **Body:**  
+  ```json
+  {
+    "username": "usuario",
+    "password": "contraseña"
+  }
+  ```
+  **Respuesta:**  
+  ```json
+  {
+    "message": "Usuario registrado con éxito"
+  }
+  ```
 
-- Usa `synchronize: true` solo en desarrollo. Para producción, usa migraciones.
-- Recuerda hashear las contraseñas antes de guardarlas.
+- **POST `/users/login`**  
+  Inicia sesión y devuelve un token JWT.  
+  **Body:**  
+  ```json
+  {
+    "username": "usuario",
+    "password": "contraseña"
+  }
+  ```
+  **Respuesta:**  
+  ```json
+  {
+    "token": "jwt_token"
+  }
+  ```
 
 ---
 
-¡Listo para empezar!  
+### Tareas (protegidas con JWT)
+
+> **Todas las rutas de tareas requieren el header:**  
+> `Authorization: Bearer tu_token_jwt`
+
+- **POST `/tasks/add`**  
+  Crea una nueva tarea asociada al usuario autenticado.  
+  **Body:**  
+  ```json
+  {
+    "title": "Comprar",
+    "description": "Comprar pan"
+  }
+  ```
+  **Respuesta:**  
+  ```json
+  {
+    "message": "Tarea agregada con éxito"
+  }
+  ```
+
+- **GET `/tasks`**  
+  Obtiene todas las tareas del usuario autenticado.  
+  **Respuesta:**  
+  ```json
+  [
+    {
+      "id": "uuid",
+      "title": "Comprar",
+      "description": "Comprar pan",
+      "completed": false
+    }
+  ]
+  ```
+
+- **PATCH `/tasks/update:id`**  
+  Marca la tarea como completada (`completed: true`).  
+  **Respuesta:**  
+  ```json
+  {
+    "message": "Tarea actualizada",
+    "task": { ... }
+  }
+  ```
+
+- **DELETE `/tasks/delete:id`**  
+  Elimina la tarea indicada por el id.  
+  **Respuesta:**  
+  ```json
+  {
+    "message": "Tarea eliminada"
+  }
+  ```
+
+---
+
+## Ejemplo de uso con Thunder Client / Postman
+
+1. **Registra un usuario:**  
+   POST `/users/register` con body `{ "username": "...", "password": "..." }`
+
+2. **Haz login:**  
+   POST `/users/login` y copia el token de la respuesta.
+
+3. **Agrega el token en el header:**  
+   `Authorization: Bearer tu_token_jwt`
+
+4. **Crea, consulta, actualiza o elimina tareas usando las rutas protegidas.**
+
+---
+
+## Seguridad y buenas prácticas
+
+- Las contraseñas se almacenan hasheadas.
+- El token JWT nunca se guarda en la base de datos.
+- Las rutas de tareas requieren autenticación.
+- No expongas la ruta `GET /users` en producción.
+
+---
+
+## Notas adicionales
+
+- Usa `synchronize: true` solo en desarrollo. Para producción, usa migraciones.
+- Puedes extender la funcionalidad agregando validaciones con `class-validator`, paginación, filtros, etc.
+- Si tienes dudas o quieres mejorar el proyecto, ¡puedes abrir issues o contribuir!
+
+---
+
+## Autor
+
+Desarrollado por Nahuel Bericiartua.
+
+---

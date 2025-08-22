@@ -31,6 +31,7 @@ export const loginUserController = async (req: Request, res: Response): Promise<
             const payload = { id: user.id, username: user.username };
             const secret = process.env.JWT_SECRET || 'secreto';
             const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+            console.log(token);
             res.status(200).json( {token,user} );
         }
     } catch (error: any) {
@@ -47,11 +48,11 @@ export const loginUserController = async (req: Request, res: Response): Promise<
 }
 
 export const getUsersController = async (req:Request, res:Response):Promise<void> => {
-// // //     try {
-// // //         const users:User[] = await getUsersService();
-// // //         res.status(200).json(users);
-// // //     } catch (error) {
-// // //         console.error('Error al obtener usuarios:', error);
-// // //         res.status(500).json({ message: 'Error interno del servidor' });
-// // //     }
+    try {
+         const users:User[] = await getUsersService();
+         res.status(200).json(users);
+     } catch (error) {
+         console.error('Error al obtener usuarios:', error);
+         res.status(500).json({ message: 'Error interno del servidor' });
+     }
 }

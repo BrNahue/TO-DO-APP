@@ -17,7 +17,7 @@ export const registerUserService = async (userData:userdata):Promise<User> => {
 }
 
 export const getUsersService = async ():Promise<User[]> => {
-    const users:User[] = await UserModel.find();
+    const users:User[] = await UserModel.find({relations: ['tasks']});
     return users;
 }
 
